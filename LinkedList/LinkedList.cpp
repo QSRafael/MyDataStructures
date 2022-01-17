@@ -13,14 +13,14 @@ LinkedList::~LinkedList()
     deleteAllNodes();
 }
 
-Node LinkedList::operator()(int i)
+Node *LinkedList::operator()(int i)
 {
     Node *control = head;
     for (int j = 0; j < i; j++)
     {
         control = control->getNext();
     }
-    return *control;
+    return control;
 }
 
 int LinkedList::operator[](int i)
@@ -296,7 +296,6 @@ void LinkedList::swap(int d1, int d2)
 
     while (control->getNext() != nullptr)
     {
-
         if (control->getNext()->getData() == d1)
         {
             prev1 = control;
@@ -329,4 +328,64 @@ void LinkedList::swap(int d1, int d2)
     control = current2->getNext();
     current2->setNext(current1->getNext());
     current1->setNext(control);
+}
+
+void LinkedList::swap(Node *n1, Node *n2)
+{
+    Node *control = head;
+    Node *prev1 = nullptr;
+    Node *current1 = nullptr;
+    Node *prev2 = nullptr;
+    Node *current2 = nullptr;
+
+    if (control == n1)
+    {
+        prev1 = nullptr;
+        current1 = control;
+    }
+    if (control == n2)
+    {
+        prev2 = nullptr;
+        current2 = control;
+    }
+
+    while (control->getNext() != nullptr)
+    {
+
+        if (control->getNext() == n1)
+        {
+            prev1 = control;
+            current1 = control->getNext();
+        }
+        if (control->getNext() == n2)
+        {
+            prev2 = control;
+            current2 = control->getNext();
+        }
+        if (prev1 != nullptr && prev2 != nullptr)
+            break;
+
+        control = control->getNext();
+    }
+
+    if (current1 == nullptr || current2 == nullptr)
+        return;
+
+    if (prev1 != nullptr)
+        prev1->setNext(current2);
+    else
+        head = current2;
+
+    if (prev2 != nullptr)
+        prev2->setNext(current1);
+    else
+        head = current1;
+
+    control = current2->getNext();
+    current2->setNext(current1->getNext());
+    current1->setNext(control);
+}
+
+void LinkedList::sort()
+{
 }

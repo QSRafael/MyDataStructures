@@ -17,18 +17,19 @@ int main()
     
     list.print();
 
-    list.swap(3,3);
+    list.swap(list(2), list(2));
     list.print();
     
-    list.swap(1,2);
+    list.swap(list(0),list(1));
     list.print();
     
-    list.swap(1,9);
+    list.swap(list(0),list(8));
     list.print();
     
     list.swap(2,7);
     list.print();
 
-    cout << list(3).getData();
+    cout << list(3)->getData();
+    cout << list[4];
     return 0;
 }

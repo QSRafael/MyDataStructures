@@ -8,7 +8,7 @@ private:
 public:
     LinkedList();
     ~LinkedList();
-    Node operator()(int);
+    Node *operator()(int);
     int operator[](int);
     Node *getHead();
     void append(int);
@@ -27,4 +27,6 @@ public:
     bool isPalindrome();
     void removeDuplicates();
     void swap(int, int);
+    void swap(Node *, Node *);
+    void sort();
 };
