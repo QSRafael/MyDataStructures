@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_set>
 #include "LinkedList.h"
 using namespace std;
 
@@ -221,7 +222,7 @@ LinkedList *LinkedList::reverseList()
     while (control != nullptr)
     {
         newlist->push(control->getData());
-        control=control->getNext();
+        control = control->getNext();
     }
     return newlist;
 }
@@ -240,4 +241,26 @@ bool LinkedList::isPalindrome()
         control2 = control2->getNext();
     }
     return true;
+}
+
+void LinkedList::removeDuplicates()
+{
+    unordered_set<int> set;
+    Node *control = head;
+    Node *prev = nullptr;
+    while (control != nullptr)
+    {
+        if (set.find(control->getData()) != set.end())
+        {
+            prev->setNext(control->getNext());
+            delete control;
+            control = prev;
+        }
+        else
+        {
+            set.insert(control->getData());
+            prev = control;
+        }
+        control = control->getNext();
+    }
 }
