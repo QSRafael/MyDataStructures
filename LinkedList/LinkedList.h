@@ -29,4 +29,5 @@ public:
     void swap(int, int);
     void swap(Node *, Node *);
     void sort();
+    void quicksort(int, int);
 };

@@ -2,6 +2,7 @@
 #include <unordered_set>
 #include "LinkedList.h"
 using namespace std;
+#define self (*this)
 
 LinkedList::LinkedList()
 {
@@ -388,4 +389,34 @@ void LinkedList::swap(Node *n1, Node *n2)
 
 void LinkedList::sort()
 {
+    if (head==nullptr)
+        return;
+    
+    quicksort(0, size());
+}
+
+void LinkedList::quicksort(int begin, int end)
+{
+    int i = begin;
+    int j = end - 1;
+    int pivo = self[(begin + end) / 2];
+    while (i <= j)
+    {
+        while (self[i] < pivo && i < end)
+            i++;
+
+        while (self[j] > pivo && j > begin)
+            j--;
+
+        if (i <= j)
+        {
+            swap(self(i), self(j));
+            i++;
+            j--;
+        }
+    }
+    if (j > begin)
+        quicksort(begin, j + 1);
+    if (i < end)
+        quicksort(i, end);
 }
