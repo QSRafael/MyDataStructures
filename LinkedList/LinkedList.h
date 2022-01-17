@@ -10,6 +10,7 @@ public:
     ~LinkedList();
     Node *operator()(int);
     int operator[](int);
+    void operator+(LinkedList&);
     Node *getHead();
     void append(int);
     void push(int);

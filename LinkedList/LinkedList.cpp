@@ -34,6 +34,16 @@ int LinkedList::operator[](int i)
     return control->getData();
 }
 
+void LinkedList::operator+(LinkedList &list)
+{
+    Node *control = list.getHead();
+    while (control!=nullptr)
+    {
+        append(control->getData());
+        control = control->getNext();
+    }
+}
+
 Node *LinkedList::getHead()
 {
     return head;
