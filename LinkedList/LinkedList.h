@@ -25,4 +25,5 @@ public:
     LinkedList *reverseList();
     bool isPalindrome();
     void removeDuplicates();
+    void swap(int, int);
 };
