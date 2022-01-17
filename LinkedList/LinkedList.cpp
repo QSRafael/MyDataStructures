@@ -37,7 +37,7 @@ int LinkedList::operator[](int i)
 void LinkedList::operator+(LinkedList &list)
 {
     Node *control = list.getHead();
-    while (control!=nullptr)
+    while (control != nullptr)
     {
         append(control->getData());
         control = control->getNext();
@@ -399,9 +399,9 @@ void LinkedList::swap(Node *n1, Node *n2)
 
 void LinkedList::sort()
 {
-    if (head==nullptr)
+    if (head == nullptr)
         return;
-    
+
     quicksort(0, size());
 }
 
@@ -429,4 +429,22 @@ void LinkedList::quicksort(int begin, int end)
         quicksort(begin, j + 1);
     if (i < end)
         quicksort(i, end);
+}
+
+void LinkedList::segregateEvenOdd()
+{
+    Node *control = head;
+    int aux;
+    size_t s = size();
+    for (size_t i = 0; i < s; i++)
+    {
+        cout << control->getData() << "\n";
+        aux = control->getData();
+        control = control->getNext();
+        if (aux % 2 != 0)
+        {
+            append(aux);
+            deleteValue(aux);
+        }
+    }
 }

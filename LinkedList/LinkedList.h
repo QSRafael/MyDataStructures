@@ -31,4 +31,5 @@ public:
     void swap(Node *, Node *);
     void sort();
     void quicksort(int, int);
+    void segregateEvenOdd();
 };
