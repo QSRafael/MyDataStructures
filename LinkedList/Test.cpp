@@ -28,5 +28,7 @@ int main()
     
     list.swap(2,7);
     list.print();
+
+    cout << list(3).getData();
     return 0;
 }

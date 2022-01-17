@@ -8,6 +8,7 @@ private:
 public:
     LinkedList();
     ~LinkedList();
+    Node operator()(int);
     int operator[](int);
     Node *getHead();
     void append(int);

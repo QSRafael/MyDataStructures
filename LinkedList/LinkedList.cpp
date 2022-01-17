@@ -13,6 +13,16 @@ LinkedList::~LinkedList()
     deleteAllNodes();
 }
 
+Node LinkedList::operator()(int i)
+{
+    Node *control = head;
+    for (int j = 0; j < i; j++)
+    {
+        control = control->getNext();
+    }
+    return *control;
+}
+
 int LinkedList::operator[](int i)
 {
     Node *control = head;
