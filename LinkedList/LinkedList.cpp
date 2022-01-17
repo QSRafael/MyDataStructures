@@ -272,7 +272,6 @@ void LinkedList::swap(int d1, int d2)
     Node *current1 = nullptr;
     Node *prev2 = nullptr;
     Node *current2 = nullptr;
-    int count = 0;
 
     if (control->getData() == d1)
     {
