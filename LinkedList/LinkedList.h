@@ -1,6 +1,6 @@
 #include <iostream>
 #include <unordered_set>
-#include "Node.cpp"
+#include "Node.h"
 using namespace std;
 #define self (*this)
 template <typename T>
