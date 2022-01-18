@@ -1,3 +1,8 @@
+/*
+ * Rafael de Queiroz Souza
+ * rfl.dqs@gmail.com
+ */
+
 #include <iostream>
 #include <unordered_set>
 #include "Node.h"

@@ -1,3 +1,8 @@
+/*
+ * Rafael de Queiroz Souza
+ * rfl.dqs@gmail.com
+ */
+
 template <typename T>
 class Node
 {
