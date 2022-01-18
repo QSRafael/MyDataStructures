@@ -55,9 +55,9 @@ int main()
 
     cout << "\nswap troca elementos ou nodes de lugares:\n";
     cout << "trocando o 2 e o 3 de lugar em list_int:";
-    list_int.swap(2,3);
+    list_int.swap(2, 3);
     cout << "trocando o 1 com o 2 elemendo de lugar na lista de introducao:\n";
-    list_string.swap(list_string(0),list_string(2));
+    list_string.swap(list_string(0), list_string(2));
 
     cout << "\nsort() ordena listas numericas:\n";
     list_int.sort();
@@ -66,6 +66,6 @@ int main()
     cout << "\nremoveDuplicates(), segregateEvenOdd() e isPalindrome() sao autoexplicativas\n";
 
     cout << "\npor ultimo, createLoopInPosition() e loopSize() sao expirimentais. Nao mexa neles\n";
-    
+
     cout << "\nObrigado!\n";
 }
