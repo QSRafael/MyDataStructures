@@ -1,8 +1,9 @@
 #include <iostream>
 #include <unordered_set>
 #include "Node.h"
-using namespace std;
 #define self (*this)
+using namespace std;
+
 template <typename T>
 class LinkedList
 {
@@ -10,66 +11,50 @@ private:
     Node<T> *head;
 
 public:
-    LinkedList();
-    ~LinkedList();
-    Node<T> *operator()(int);
-    T operator[](int);
-    void operator+(LinkedList&);
-    Node<T> *getHead();
-    void append(T);
-    void push(T);
-    void deleteValue(T);
-    void deletePosition(int);
+    LinkedList() { head = nullptr; };
+    ~LinkedList() { deleteAllNodes(); };
+    Node<T> *operator()(int);            // retorna um ponteiro para o elemento i
+    T operator[](int);                   // retorna o valor do elemento i
+    void operator+(LinkedList &);        // concatena duas listas
+    Node<T> *getHead() { return head; }; // retorna a cabeça da lista
+    void append(T);                      // adiciona no fim
+    void push(T);                        // adiciona na frente
+    void deleteValue(T);                 // deleta a primeira ocorrência de um valor
+    void deletePosition(int);            // deleta o nó na posição i
     void deleteAllNodes();
     void print();
     size_t size();
-    bool inList(T);
-    void middle();
-    int count(T);
-    void createLoopInPosition(int);
+    bool inList(T);                 // verifica se a lista contém o valor i
+    void middle();                  // retorna o elemento central
+    int count(T);                   // conta quantas vezes o elemento i aparece
+    void createLoopInPosition(int); // usar com cautela... apenas para testes
     int loopSize();
-    LinkedList *reverseList();
+    LinkedList *reverseList(); // cria uma nova lista com a ordem reversa da anterior
     bool isPalindrome();
     void removeDuplicates();
-    void swap(T, T);
-    void swap(Node<T> *, Node<T> *);
-    void sort();
+    void swap(T, T);                 // troca dois valores de lugar
+    void swap(Node<T> *, Node<T> *); // troca dois nós de lugar
+    void sort();                     // ordena usando quicksort
     void quicksort(int, int);
-    void segregateEvenOdd();
-    void reverse();
+    void segregateEvenOdd(); // separa os pares dos ímpares
+    void reverse();          // reverte a lista inplace
 };
 
 template <typename T>
-LinkedList<T>::LinkedList()
-{
-    head = nullptr;
-}
-
-template <typename T>
-LinkedList<T>::~LinkedList()
-{
-    deleteAllNodes();
-}
-
-template <typename T>
-Node<T> *LinkedList<T>::operator()(int i)
+Node<T> *LinkedList<T>::operator()(int i) // retorna um ponteiro para o elemento i
 {
     Node<T> *control = head;
     for (int j = 0; j < i; j++)
-    {
         control = control->getNext();
-    }
     return control;
 }
 
 template <typename T>
-T LinkedList<T>::operator[](int i)
+T LinkedList<T>::operator[](int i) // retorna o valor do elemento i
 {
     Node<T> *control = head;
     for (int j = 0; j < i; j++)
-    {
         control = control->getNext();
-    }
     return control->getData();
 }
 
@@ -82,12 +67,6 @@ void LinkedList<T>::operator+(LinkedList &list)
         append(control->getData());
         control = control->getNext();
     }
-}
-
-template <typename T>
-Node<T> *LinkedList<T>::getHead()
-{
-    return head;
 }
 
 template <typename T>
@@ -499,7 +478,6 @@ void LinkedList<T>::segregateEvenOdd()
     size_t s = size();
     for (size_t i = 0; i < s; i++)
     {
-        cout << control->getData() << "\n";
         aux = control->getData();
         control = control->getNext();
         if (aux % 2 != 0)
@@ -516,7 +494,7 @@ void LinkedList<T>::reverse()
     Node<T> *control = head;
     Node<T> *next = nullptr;
     Node<T> *prev = nullptr;
-    while (control!= nullptr)
+    while (control != nullptr)
     {
         next = control->getNext();
         control->setNext(prev);

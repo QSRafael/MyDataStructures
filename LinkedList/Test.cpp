@@ -4,14 +4,15 @@ using namespace std;
 
 int main()
 {
-    LinkedList<float> list;
+    LinkedList<int> list;
 
     for (int i = 0; i < 10; i++)
     {
-        list.append(i*2.4156);
+        list.append(i);
     }
 
     list.print();
     list.reverse();
+    list.segregateEvenOdd();
     list.print();
 }

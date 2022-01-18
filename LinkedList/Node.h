@@ -2,15 +2,15 @@ template <typename T>
 class Node
 {
 private:
-    Node *next;
-    T data;
+    Node *next; // ponteiro para o próximo elemento
+    T data;     // dado
 
 public:
     Node(T d);
-    ~Node();
-    Node *getNext();
-    void setNext(Node *);
-    T getData();
+    ~Node(){};
+    Node *getNext() { return next; };
+    void setNext(Node *point) { next = point; };
+    T getData() { return data; };
 };
 
 template <typename T>
@@ -18,27 +18,4 @@ Node<T>::Node(T d)
 {
     data = d;
     next = nullptr;
-}
-
-template <typename T>
-Node<T>::~Node()
-{
-}
-
-template <typename T>
-Node<T> *Node<T>::getNext()
-{
-    return next;
-}
-
-template <typename T>
-void Node<T>::setNext(Node *point)
-{
-    next = point;
-}
-
-template <typename T>
-T Node<T>::getData()
-{
-    return data;
 }
