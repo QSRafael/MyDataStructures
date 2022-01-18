@@ -1,22 +1,60 @@
 #include <iostream>
 #include <unordered_set>
-#include "LinkedList.h"
+#include "Node.cpp"
 using namespace std;
 #define self (*this)
+template <typename T>
+class LinkedList
+{
+private:
+    Node<T> *head;
 
-LinkedList::LinkedList()
+public:
+    LinkedList();
+    ~LinkedList();
+    Node<T> *operator()(int);
+    T operator[](int);
+    void operator+(LinkedList&);
+    Node<T> *getHead();
+    void append(T);
+    void push(T);
+    void deleteValue(T);
+    void deletePosition(int);
+    void deleteAllNodes();
+    void print();
+    size_t size();
+    bool inList(T);
+    void middle();
+    int count(T);
+    void createLoopInPosition(int);
+    int loopSize();
+    LinkedList *reverseList();
+    bool isPalindrome();
+    void removeDuplicates();
+    void swap(T, T);
+    void swap(Node<T> *, Node<T> *);
+    void sort();
+    void quicksort(int, int);
+    void segregateEvenOdd();
+    void reverse();
+};
+
+template <typename T>
+LinkedList<T>::LinkedList()
 {
     head = nullptr;
 }
 
-LinkedList::~LinkedList()
+template <typename T>
+LinkedList<T>::~LinkedList()
 {
     deleteAllNodes();
 }
 
-Node *LinkedList::operator()(int i)
+template <typename T>
+Node<T> *LinkedList<T>::operator()(int i)
 {
-    Node *control = head;
+    Node<T> *control = head;
     for (int j = 0; j < i; j++)
     {
         control = control->getNext();
@@ -24,9 +62,10 @@ Node *LinkedList::operator()(int i)
     return control;
 }
 
-int LinkedList::operator[](int i)
+template <typename T>
+T LinkedList<T>::operator[](int i)
 {
-    Node *control = head;
+    Node<T> *control = head;
     for (int j = 0; j < i; j++)
     {
         control = control->getNext();
@@ -34,9 +73,10 @@ int LinkedList::operator[](int i)
     return control->getData();
 }
 
-void LinkedList::operator+(LinkedList &list)
+template <typename T>
+void LinkedList<T>::operator+(LinkedList &list)
 {
-    Node *control = list.getHead();
+    Node<T> *control = list.getHead();
     while (control != nullptr)
     {
         append(control->getData());
@@ -44,15 +84,17 @@ void LinkedList::operator+(LinkedList &list)
     }
 }
 
-Node *LinkedList::getHead()
+template <typename T>
+Node<T> *LinkedList<T>::getHead()
 {
     return head;
 }
 
-void LinkedList::append(int d)
+template <typename T>
+void LinkedList<T>::append(T d)
 {
-    Node *novo = new Node(d);
-    Node *control = head;
+    Node<T> *novo = new Node<T>(d);
+    Node<T> *control = head;
     if (head == nullptr)
     {
         head = novo;
@@ -66,17 +108,19 @@ void LinkedList::append(int d)
     control->setNext(novo);
 }
 
-void LinkedList::push(int d)
+template <typename T>
+void LinkedList<T>::push(T d)
 {
-    Node *novo = new Node(d);
+    Node<T> *novo = new Node<T>(d);
     novo->setNext(head);
     head = novo;
 }
 
-void LinkedList::deleteValue(int d)
+template <typename T>
+void LinkedList<T>::deleteValue(T d)
 {
-    Node *control = head;
-    Node *aux;
+    Node<T> *control = head;
+    Node<T> *aux;
     if (control->getData() == d)
     {
         head = control->getNext();
@@ -96,10 +140,11 @@ void LinkedList::deleteValue(int d)
     }
 }
 
-void LinkedList::deletePosition(int i)
+template <typename T>
+void LinkedList<T>::deletePosition(int i)
 {
-    Node *control = head;
-    Node *aux;
+    Node<T> *control = head;
+    Node<T> *aux;
     if (i == 0)
     {
         head = control->getNext();
@@ -119,9 +164,10 @@ void LinkedList::deletePosition(int i)
     return;
 }
 
-void LinkedList::deleteAllNodes()
+template <typename T>
+void LinkedList<T>::deleteAllNodes()
 {
-    Node *aux;
+    Node<T> *aux;
     while (head != nullptr)
     {
         aux = head;
@@ -130,9 +176,10 @@ void LinkedList::deleteAllNodes()
     }
 }
 
-void LinkedList::print()
+template <typename T>
+void LinkedList<T>::print()
 {
-    Node *control = head;
+    Node<T> *control = head;
     if (head != nullptr)
     {
         while (control != nullptr)
@@ -144,9 +191,10 @@ void LinkedList::print()
     cout << "(null)" << endl;
 }
 
-size_t LinkedList::size()
+template <typename T>
+size_t LinkedList<T>::size()
 {
-    Node *control = head;
+    Node<T> *control = head;
     size_t count = 0;
     while (control != nullptr)
     {
@@ -156,9 +204,10 @@ size_t LinkedList::size()
     return count;
 }
 
-bool LinkedList::inList(int d)
+template <typename T>
+bool LinkedList<T>::inList(T d)
 {
-    Node *control = head;
+    Node<T> *control = head;
     while (control != nullptr)
     {
         if (control->getData() == d)
@@ -168,10 +217,11 @@ bool LinkedList::inList(int d)
     return false;
 }
 
-void LinkedList::middle()
+template <typename T>
+void LinkedList<T>::middle()
 {
-    Node *slow = head;
-    Node *fast = head;
+    Node<T> *slow = head;
+    Node<T> *fast = head;
     if (head != nullptr)
     {
         while (fast != nullptr)
@@ -185,9 +235,10 @@ void LinkedList::middle()
     }
 }
 
-int LinkedList::count(int d)
+template <typename T>
+int LinkedList<T>::count(T d)
 {
-    Node *control = head;
+    Node<T> *control = head;
     int count = 0;
 
     while (control != nullptr)
@@ -199,10 +250,11 @@ int LinkedList::count(int d)
     return count;
 }
 
-void LinkedList::createLoopInPosition(int i) // usar com cuidado
+template <typename T>
+void LinkedList<T>::createLoopInPosition(int i) // usar com cuidado
 {
-    Node *target = nullptr;
-    Node *control = head;
+    Node<T> *target = nullptr;
+    Node<T> *control = head;
     int count = 0;
     while (control->getNext() != nullptr)
     {
@@ -214,10 +266,11 @@ void LinkedList::createLoopInPosition(int i) // usar com cuidado
     control->setNext(target);
 }
 
-int LinkedList::loopSize()
+template <typename T>
+int LinkedList<T>::loopSize()
 {
-    Node *fast = head;
-    Node *slow = head;
+    Node<T> *fast = head;
+    Node<T> *slow = head;
     int count = 0;
     while (fast != nullptr && slow != nullptr && fast->getNext() != nullptr)
     {
@@ -236,9 +289,10 @@ int LinkedList::loopSize()
     return 0;
 }
 
-LinkedList *LinkedList::reverseList()
+template <typename T>
+LinkedList<T> *LinkedList<T>::reverseList()
 {
-    Node *control = head;
+    Node<T> *control = head;
     LinkedList *newlist = new LinkedList();
     while (control != nullptr)
     {
@@ -248,11 +302,12 @@ LinkedList *LinkedList::reverseList()
     return newlist;
 }
 
-bool LinkedList::isPalindrome()
+template <typename T>
+bool LinkedList<T>::isPalindrome()
 {
     LinkedList *aux = reverseList();
-    Node *control1 = head;
-    Node *control2 = aux->getHead();
+    Node<T> *control1 = head;
+    Node<T> *control2 = aux->getHead();
     aux->print();
     while (control1 != nullptr)
     {
@@ -264,11 +319,12 @@ bool LinkedList::isPalindrome()
     return true;
 }
 
-void LinkedList::removeDuplicates()
+template <typename T>
+void LinkedList<T>::removeDuplicates()
 {
     unordered_set<int> set;
-    Node *control = head;
-    Node *prev = nullptr;
+    Node<T> *control = head;
+    Node<T> *prev = nullptr;
     while (control != nullptr)
     {
         if (set.find(control->getData()) != set.end())
@@ -286,13 +342,14 @@ void LinkedList::removeDuplicates()
     }
 }
 
-void LinkedList::swap(int d1, int d2)
+template <typename T>
+void LinkedList<T>::swap(T d1, T d2)
 {
-    Node *control = head;
-    Node *prev1 = nullptr;
-    Node *current1 = nullptr;
-    Node *prev2 = nullptr;
-    Node *current2 = nullptr;
+    Node<T> *control = head;
+    Node<T> *prev1 = nullptr;
+    Node<T> *current1 = nullptr;
+    Node<T> *prev2 = nullptr;
+    Node<T> *current2 = nullptr;
 
     if (control->getData() == d1)
     {
@@ -341,13 +398,14 @@ void LinkedList::swap(int d1, int d2)
     current1->setNext(control);
 }
 
-void LinkedList::swap(Node *n1, Node *n2)
+template <typename T>
+void LinkedList<T>::swap(Node<T> *n1, Node<T> *n2)
 {
-    Node *control = head;
-    Node *prev1 = nullptr;
-    Node *current1 = nullptr;
-    Node *prev2 = nullptr;
-    Node *current2 = nullptr;
+    Node<T> *control = head;
+    Node<T> *prev1 = nullptr;
+    Node<T> *current1 = nullptr;
+    Node<T> *prev2 = nullptr;
+    Node<T> *current2 = nullptr;
 
     if (control == n1)
     {
@@ -397,7 +455,8 @@ void LinkedList::swap(Node *n1, Node *n2)
     current1->setNext(control);
 }
 
-void LinkedList::sort()
+template <typename T>
+void LinkedList<T>::sort()
 {
     if (head == nullptr)
         return;
@@ -405,7 +464,8 @@ void LinkedList::sort()
     quicksort(0, size());
 }
 
-void LinkedList::quicksort(int begin, int end)
+template <typename T>
+void LinkedList<T>::quicksort(int begin, int end)
 {
     int i = begin;
     int j = end - 1;
@@ -431,9 +491,10 @@ void LinkedList::quicksort(int begin, int end)
         quicksort(i, end);
 }
 
-void LinkedList::segregateEvenOdd()
+template <typename T>
+void LinkedList<T>::segregateEvenOdd()
 {
-    Node *control = head;
+    Node<T> *control = head;
     int aux;
     size_t s = size();
     for (size_t i = 0; i < s; i++)
@@ -449,11 +510,12 @@ void LinkedList::segregateEvenOdd()
     }
 }
 
-void LinkedList::reverse()
+template <typename T>
+void LinkedList<T>::reverse()
 {
-    Node *control = head;
-    Node *next = nullptr;
-    Node *prev = nullptr;
+    Node<T> *control = head;
+    Node<T> *next = nullptr;
+    Node<T> *prev = nullptr;
     while (control!= nullptr)
     {
         next = control->getNext();

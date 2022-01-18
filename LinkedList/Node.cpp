@@ -1,26 +1,44 @@
-#include "Node.h"
+template <typename T>
+class Node
+{
+private:
+    Node *next;
+    T data;
 
-Node::Node(int d)
+public:
+    Node(T d);
+    ~Node();
+    Node *getNext();
+    void setNext(Node *);
+    T getData();
+};
+
+template <typename T>
+Node<T>::Node(T d)
 {
     data = d;
     next = nullptr;
 }
 
-Node::~Node()
+template <typename T>
+Node<T>::~Node()
 {
 }
 
-Node *Node::getNext()
+template <typename T>
+Node<T> *Node<T>::getNext()
 {
     return next;
 }
 
-void Node::setNext(Node *point)
+template <typename T>
+void Node<T>::setNext(Node *point)
 {
     next = point;
 }
 
-int Node::getData()
+template <typename T>
+T Node<T>::getData()
 {
     return data;
 }
