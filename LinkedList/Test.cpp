@@ -12,7 +12,7 @@ int main()
     }
 
     list.print();
-    list.segregateEvenOdd();
+    list.reverse();
     list.print();
 
 }

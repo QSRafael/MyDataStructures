@@ -448,3 +448,18 @@ void LinkedList::segregateEvenOdd()
         }
     }
 }
+
+void LinkedList::reverse()
+{
+    Node *control = head;
+    Node *next = nullptr;
+    Node *prev = nullptr;
+    while (control!= nullptr)
+    {
+        next = control->getNext();
+        control->setNext(prev);
+        prev = control;
+        control = next;
+    }
+    head = prev;
+}
