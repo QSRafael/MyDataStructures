@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <unordered_set>
-#include "Node.h"
+#include "../Node/Node.h"
 #define self (*this)
 using namespace std;
 
@@ -22,7 +22,7 @@ public:
     T operator[](int);                   // retorna o valor do elemento i
     void operator+(LinkedList &);        // concatena duas listas
     Node<T> *getHead() { return head; }; // retorna a cabeça da lista
-    void append(T);                      // adiciona no fim
+    Node<T>* append(T);                      // adiciona no fim
     void push(T);                        // adiciona na frente
     void deleteValue(T);                 // deleta a primeira ocorrência de um valor
     void deletePosition(int);            // deleta o nó na posição i
@@ -75,14 +75,14 @@ void LinkedList<T>::operator+(LinkedList &list)
 }
 
 template <typename T>
-void LinkedList<T>::append(T d)
+Node<T>* LinkedList<T>::append(T d)
 {
     Node<T> *novo = new Node<T>(d);
     Node<T> *control = head;
     if (head == nullptr)
     {
         head = novo;
-        return;
+        return novo;
     }
 
     while (control->getNext() != nullptr)
@@ -90,6 +90,7 @@ void LinkedList<T>::append(T d)
         control = control->getNext();
     }
     control->setNext(novo);
+    return novo;
 }
 
 template <typename T>
