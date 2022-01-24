@@ -14,6 +14,7 @@ class LinkedList
 {
 private:
     Node<T> *head;
+    Node<T> *tail;
 
 public:
     LinkedList() { head = nullptr; };
@@ -22,7 +23,7 @@ public:
     T operator[](int);                   // retorna o valor do elemento i
     void operator+(LinkedList &);        // concatena duas listas
     Node<T> *getHead() { return head; }; // retorna a cabeça da lista
-    Node<T>* append(T);                      // adiciona no fim
+    Node<T> *append(T);                  // adiciona no fim
     void push(T);                        // adiciona na frente
     void deleteValue(T);                 // deleta a primeira ocorrência de um valor
     void deletePosition(int);            // deleta o nó na posição i
@@ -75,21 +76,19 @@ void LinkedList<T>::operator+(LinkedList &list)
 }
 
 template <typename T>
-Node<T>* LinkedList<T>::append(T d)
+Node<T> *LinkedList<T>::append(T d)
 {
     Node<T> *novo = new Node<T>(d);
-    Node<T> *control = head;
+    Node<T> *control = tail;
     if (head == nullptr)
     {
         head = novo;
+        tail = novo;
         return novo;
     }
 
-    while (control->getNext() != nullptr)
-    {
-        control = control->getNext();
-    }
     control->setNext(novo);
+    tail = novo;
     return novo;
 }
 
@@ -117,7 +116,10 @@ void LinkedList<T>::deleteValue(T d)
         if (control->getNext()->getData() == d)
         {
             aux = control->getNext();
+            if (control->getNext()->getNext() == nullptr)
+                tail = control;
             control->setNext(control->getNext()->getNext());
+
             delete aux;
             return;
         }
@@ -144,6 +146,8 @@ void LinkedList<T>::deletePosition(int i)
     }
 
     aux = control->getNext();
+    if (control->getNext()->getNext() == nullptr)
+        tail = control;
     control->setNext(control->getNext()->getNext());
     delete aux;
     return;
